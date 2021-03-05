@@ -12,6 +12,7 @@ def homePage():
 
 @app.route('/handle_data', methods=['POST'])
 def handle_data():
+    #read data from one site
     def readData(rev_blocks):
         for rev_block in rev_blocks:
             # LOAD DATES FROM USER POSTS
