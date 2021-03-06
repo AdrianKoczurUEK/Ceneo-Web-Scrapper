@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     {% for data in user_data%}
+
         <p>{{data.desc}}</p>
         <p>{{data.stars}}</p>
         <p>{{data.author}}</p>
@@ -8,6 +9,7 @@
         <p>{{data.rev_date}}</p>
         <p>{{data.buy_date}}</p>
         <p>{{data.next}}</p>
+        <p>{{data.id}}</p>
         <p>-------------------------------</p>
     {% endfor%}
 {% endblock content %}
