@@ -1,9 +1,0 @@
- Please enter tht commit messagt for your changes. Lines starting
-#qeqwe with '#' will be ignored, and an empty message aborts the commit.
-#
-# On branch main
-# Your branch is up to date with 'origin/main'.
-#
-# Changes to be committed:
-#	modified:  main.py
-deleted some useless codeete
