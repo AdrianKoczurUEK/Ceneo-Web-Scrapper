@@ -1,22 +1,38 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<div class=".container" style="margin-top:50px">
+        <div class="row">
+                <div class="col-lg-4"><img src="{{item_img}}"></div>
+
+                <div class="col-lg-8"><h1 class="display-4">{{item_name}}</h1></div>
+        </div>
+
 {% for data in user_data%}
-        <p>{{data.id}}</p>
-        <p>{{data.desc}}</p>
-        <p>{{data.stars}}</p>
-        <p>{{data.author}}</p>
-        <p>{{data.recommended}}</p>
-        <p>{{data.rev_date}}</p>
-        <p>{{data.buy_date}}</p>
-        <h4>ZALETY</h4>
-        {% for pros in data.pros%}
-        <p>{{pros}}</p>
-        {% endfor%}
-        <h4>WADY</h4>
-        {% for con in data.cons%}
-        <p>{{con}}</p>
-        {% endfor%}
-        <p>-------------------------------</p>
+
+                <div class="row " style="margin-top:50px">
+                        <div class="col-lg-2 " style="background-color:lavender;"><i class="fas fa-user fa-7x" style="color:#949494"></i></div>
+                        <div class="col-lg-3 " style="background-color:lavender;"><h4 class="font-weight-normal">{{data.author}}</h4></div>
+                        <div {%if data.recommended=='Polecam' %} class="col-lg-1 font-weight-bolder text-success" {% else %} class="col-lg-1 font-weight-bolder text-danger"{% endif%} style="background-color:lavender;">{{data.recommended}}</div>
+                        <div class="col-lg-4" style="background-color:lavender;">
+                                {{data.stars}}
+                                {% set starss = data.stars.split('/') %}
+                                {% set stars = starss[0].split(',') %}
+                                {% set star = stars[0] |int|round%}
+                                {% for i in range(star)%}
+                                <i class="fas fa-star" style="color:#ffff66"></i>
+                                {%endfor%}
+                        </div>
+                        <div class="col-lg-1" style="background-color:lavender;">{{data.rev_positive_votes}}</div>
+                        <div class="col-lg-1" style="background-color:lavender;">{{data.rev_negative_votes}}</div>
+
+                </div>
+                <div class="row" >
+
+                        <div class="col-lg-12" style="background-color:lavender;">{{data.desc}}</div>
+
+                </div>
+
     {% endfor%}
+</div>
 {% endblock content %}

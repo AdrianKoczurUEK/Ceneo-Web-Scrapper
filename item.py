@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup as BS
-from flask import Flask, render_template, request, url_for
 from review import Review
-from os.path  import basename
 from urllib.request import urlopen
 import requests
 
@@ -20,11 +18,11 @@ class Item:
     def getImg(self):
         try:
             link=self.soup.find("a", attrs={"class":'js_gallery-anchor js_image-preview'})
-            linn=link.find("img")
-            lnk = linn["src"]
-            with open(f"images/{self.item_id}.jpg", "wb") as f:
+            lnk=link.find("img")["src"]
+            '''with open(f"images/{self.item_id}.jpg", "wb") as f:
                 f.write(urlopen(f'http://{lnk[2:]}').read())
-            return f"images/{self.item_id}.jpg"
+            return f"images/{self.item_id}.jpg"'''
+            return lnk
         except:
             return ''
 
@@ -43,7 +41,6 @@ class Item:
         page = requests.get(url)
         soup = BS(page.content, 'html.parser')
         self.createRevObj(soup)
-        print(soup)
         if soup.find(class_='pagination'):
             pages_list = soup.find(class_='pagination')
             if pages_list.find(class_='pagination__item pagination__next'):
