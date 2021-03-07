@@ -17,11 +17,11 @@ def extract():
     return render_template('extract.html',page='extract')
 
 
-@app.route('/extract_data', methods=['POST'])
-def extract_data():
+@app.route('/item', methods=['POST'])
+def item():
         item_id = request.form['item_id']
         item=Item(item_id)
-        return render_template('extract.html', user_data=item.reviews, page='extract')
+        return render_template('item.html', user_data=item.reviews)
 
 
 

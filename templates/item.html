@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+
+{% for data in user_data%}
+        <p>{{data.id}}</p>
+        <p>{{data.desc}}</p>
+        <p>{{data.stars}}</p>
+        <p>{{data.author}}</p>
+        <p>{{data.recommended}}</p>
+        <p>{{data.rev_date}}</p>
+        <p>{{data.buy_date}}</p>
+        <h4>ZALETY</h4>
+        {% for pros in data.pros%}
+        <p>{{pros}}</p>
+        {% endfor%}
+        <h4>WADY</h4>
+        {% for con in data.cons%}
+        <p>{{con}}</p>
+        {% endfor%}
+        <p>-------------------------------</p>
+    {% endfor%}
+{% endblock content %}
