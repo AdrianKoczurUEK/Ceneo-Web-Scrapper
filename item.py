@@ -11,9 +11,32 @@ class Item:
         self.soup = BS(self.page.content, 'html.parser')
         self.item_id = item_id
         self.item_name = self.getItemName()
+        self.img = self.getImg()
+        self.rev_num=self.getRevNum()
+        self.item_avg_score=self.getItemAvgScore()
         self.reviews=[]
         self.generateRevs(item_id)
-        self.img=self.getImg()
+        self.pros_count=self.itemProsCount()
+        self.cons_count=self.itemConsCount()
+
+    def itemProsCount(self):
+        pro_count=0
+        for rev in self.reviews:
+            pro_count+=len(rev.pros)
+        return pro_count
+
+    def itemConsCount(self):
+        con_count=0
+        for rev in self.reviews:
+            con_count+=len(rev.cons)
+        return con_count
+
+
+    def getItemAvgScore(self):
+        return self.soup.find(class_='product-review__score')['content']
+
+    def getRevNum(self):
+        return self.soup.find(class_="product-review__link link link--accent js_reviews-link js_clickHash js_seoUrl").find("span").text
 
     def getImg(self):
         try:

@@ -63,17 +63,20 @@ class Review:
         pros_list = []
         if self.rev_block.find(class_='review-feature'):
             col = self.rev_block.find_all(class_='review-feature__col')
-            pros = col[0].find_all(class_='review-feature__item')
-            for pro in pros:
-                pros_list.append(pro.text)
+            for x in col:
+                if x.find(class_='review-feature__title review-feature__title--positives'):
+                    pros = x.find_all(class_='review-feature__item')
+                    for pro in pros:
+                        pros_list.append(pro.text)
         return pros_list
 
     def getCons(self):
         cons_list = []
         if self.rev_block.find(class_='review-feature'):
             col = self.rev_block.find_all(class_='review-feature__col')
-            if len(col) > 1:
-                cons = col[1].find_all(class_='review-feature__item')
-                for con in cons:
-                    cons_list.append(con.text)
+            for x in col:
+                if x.find(class_='review-feature__title review-feature__title--negatives'):
+                    cons = x.find_all(class_='review-feature__item')
+                    for con in cons:
+                        cons_list.append(con.text)
         return cons_list

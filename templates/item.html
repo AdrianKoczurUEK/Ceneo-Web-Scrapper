@@ -11,10 +11,10 @@
 {% for data in user_data%}
 
                 <div class="row " style="margin-top:50px">
-                        <div class="col-lg-2 " style="background-color:lavender;"><i class="fas fa-user fa-7x" style="color:#949494"></i></div>
-                        <div class="col-lg-3 " style="background-color:lavender;"><h4 class="font-weight-normal">{{data.author}}</h4></div>
-                        <div {%if data.recommended=='Polecam' %} class="col-lg-1 font-weight-bolder text-success" {% else %} class="col-lg-1 font-weight-bolder text-danger"{% endif%} style="background-color:lavender;">{{data.recommended}}</div>
-                        <div class="col-lg-4" style="background-color:lavender;">
+                        <div class="col-lg-2 pt-3 " style="background-color:#d8cfd8;"><i class="fas fa-user fa-7x" style="color:#949494"></i></div>
+                        <div class="col-lg-3 pt-3 " style="background-color:#d8cfd8;"><h4 class="font-weight-normal">{{data.author}}</h4></div>
+                        <div {%if data.recommended=='Polecam' %} class="col-lg-1 pt-3 font-weight-bolder text-success" {% else %} class="col-lg-1 pt-3 font-weight-bolder text-danger"{% endif%} style="background-color:#d8cfd8;">{{data.recommended}}</div>
+                        <div class="col-lg-4 pt-3" style="background-color:#d8cfd8;">
                                 {{data.stars}}
                                 {% set starss = data.stars.split('/') %}
                                 {% set stars = starss[0].split(',') %}
@@ -23,14 +23,49 @@
                                 <i class="fas fa-star" style="color:#ffff66"></i>
                                 {%endfor%}
                         </div>
-                        <div class="col-lg-1" style="background-color:lavender;">{{data.rev_positive_votes}}</div>
-                        <div class="col-lg-1" style="background-color:lavender;">{{data.rev_negative_votes}}</div>
+                        <div class="col-lg-1 pt-3" style="background-color:#d8cfd8;">{{data.rev_positive_votes}}<i class="fas fa-arrow-up pl-2" style="color:green"></i></div>
+                        <div class="col-lg-1 pt-3" style="background-color:#d8cfd8;">{{data.rev_negative_votes}}<i class="fas fa-arrow-down pl-2" style="color:red"></i></div>
 
                 </div>
                 <div class="row" >
+                        <div class="col-lg-2" style="background-color:#d8cfd8;"></div>
+                        <div class="col-lg-10 pb-5 " style="background-color:#d8cfd8;">{{data.desc}}</div>
 
-                        <div class="col-lg-12" style="background-color:lavender;">{{data.desc}}</div>
+                </div>
+                <div class="row" >
+                            <div class="col-lg-6 pt-5" style="background-color:#d8cfd8;text-align:center"><h5 class="display-6 text-success">
+                        {% if data.pros|length %}
+                            Zalety
+                        {%endif%}
+                            </h5></div>
+                            <div class="col-lg-6 pt-5" style="background-color:#d8cfd8;text-align:center"><h5 class="display-6 text-danger" >
+                        {% if data.cons|length %}
+                            Wady
+                        {%endif%}
+                            </h5></div>
 
+                </div>
+                <div class="row" >
+                        <div class="col-lg-6 pb-3" style="background-color:#d8cfd8;text-align:center">
+                            <ul class="list-group list-group-flush">
+                                {%for pro in data.pros%}
+                                <li class="list-group-item list-group-item-success">{{pro}}</li>
+                                {%endfor%}
+                            </ul>
+
+
+
+                        </div>
+                        <div class="col-lg-6 pb-3" style="background-color:#d8cfd8;text-align:center">
+                            <ul class="list-group list-group-flush">
+                                {% if data.cons|length %}
+                                    {%for con in data.cons %}
+                                <li class="list-group-item list-group-item-danger">{{con}}</li>
+                                    {%endfor%}
+                                {%endif%}
+
+                            </ul>
+                        </div>
                 </div>
 
     {% endfor%}
