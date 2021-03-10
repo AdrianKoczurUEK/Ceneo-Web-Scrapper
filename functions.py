@@ -42,3 +42,14 @@ def sortBy(json_dict_list,sort_by,revers):
         return json_dict_list
     except:
         return ''
+
+def filterBy(data,filter):
+    if filter=='notbought':
+        data['item_reviews'] = [rev for rev in data['item_reviews'] if rev['bought']==False]
+    elif filter=='notrecommended':
+        data['item_reviews'] = [rev for rev in data['item_reviews'] if rev['recommended'] == 'Nie polecam']
+    elif filter=='bought':
+        data['item_reviews'] = [rev for rev in data['item_reviews'] if rev['bought']]
+    elif filter=='recommended':
+        data['item_reviews'] = [rev for rev in data['item_reviews'] if rev['recommended'] == 'Polecam']
+    return data
