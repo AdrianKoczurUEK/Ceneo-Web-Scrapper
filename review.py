@@ -12,9 +12,17 @@ class Review:
         self.rev_date = self.getRevDate()
         self.buy_date = self.getBuyDate()
         self.pros = self.getPros()
+        self.pros_count = self.getProsCount()
         self.cons = self.getCons()
+        self.cons_count = self.getConsCount()
         self.bought = self.getBought()
         self.rev_block=1
+
+    def getProsCount(self):
+        return len(self.pros)
+
+    def getConsCount(self):
+        return len(self.cons)
 
     def getPositiveVotes(self):
         vote_button = self.rev_block.find("button", attrs={"data-review-id": self.rev_id,

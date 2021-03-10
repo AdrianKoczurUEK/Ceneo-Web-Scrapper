@@ -1,6 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
-
+{%set x=item_name%}
+<div class="dropdown" style="text-align:right">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort by
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{{ url_for('itemSort', sort='rev_positive_votes', rev='True') }}">Pozytywne Opinie  (malejąco)</a>
+        <a class="dropdown-item" href="{{ url_for('itemSort', sort='rev_positive_votes', rev='False') }}">Pozytywne Opinie  (rosnąco)</a>
+        <a class="dropdown-item" href="{{ url_for('itemSort', sort='rev_negative_votes', rev='True') }}">Negatywne Opinie  (malejąco)</a>
+        <a class="dropdown-item" href="{{ url_for('itemSort', sort='rev_negative_votes', rev='False') }}">Negatywne Opinie  (rosnąco)</a>
+        <a class="dropdown-item" href="{{ url_for('itemSort', sort='pros_count', rev='True') }}">Liczba Zalet  (malejąco)</a>
+        <a class="dropdown-item" href="{{ url_for('itemSort', sort='pros_count', rev='False') }}">Liczba Zalet  (rosnąco)</a>
+        <a class="dropdown-item" href="{{ url_for('itemSort', sort='cons_count', rev='True') }}">Liczba Wad  (malejąco)</a>
+        <a class="dropdown-item" href="{{ url_for('itemSort', sort='cons_count', rev='False') }}">Liczba Wad  (rosnąco)</a>
+      </div>
+</div>
 <div class=".container" style="margin-top:50px">
         <div class="row">
                 <div class="col-lg-4"><img src="{{item_img}}"></div>

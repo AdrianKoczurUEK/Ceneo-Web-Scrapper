@@ -27,3 +27,18 @@ def readJsFiles():
             json_dict=json.load(f)
             json_data.append(json_dict)
     return json_data
+
+def getJsonByItemId(item_id):
+    with open(f'data/{item_id}.json', 'r') as f:
+        return json.load(f)
+
+def sortBy(json_dict_list,sort_by,revers):
+    try:
+        if revers == 'True':
+            revers=True
+        else:
+            revers=False
+        json_dict_list['item_reviews'] = sorted(json_dict_list['item_reviews'], key=lambda x : x[f'{sort_by}'], reverse=revers)
+        return json_dict_list
+    except:
+        return ''
