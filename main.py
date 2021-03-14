@@ -1,10 +1,16 @@
 from flask import Flask, render_template, request, send_file, session
 from functions import readJsFiles, saveAsJs, getJsonByItemId, sortBy, filterBy
 from item import Item
+from graph import generate_stars_plot,generate_recommend_plot
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8f42a73054b1749f8f58848be5e6502c'
 
+@app.route('/graphs')
+def item_graphs():
+    item_id = request.args.get('id', None)
+    item_data = getJsonByItemId(item_id)
+    return render_template('graphs.html', plot_stars=generate_stars_plot(item_data),plot_recommend=generate_recommend_plot(item_data))
 
 @app.route('/list')
 def item_list():
@@ -51,11 +57,14 @@ def extract():
 
 @app.route('/item', methods=['POST'])
 def item():
-    item_id = request.form['item_id']
-    item = Item(item_id)
-    session['my_item_id'] = item_id
-    saveAsJs(item.reviews, item_id, item)
-    return render_template('item.html', user_data=item.reviews, item_img=item.img, item_name=item.item_name)
+    try:
+        item_id = request.form['item_id']
+        item = Item(item_id)
+        session['my_item_id'] = item_id
+        saveAsJs(item.reviews, item_id, item)
+        return render_template('item.html', user_data=item.reviews, item_img=item.img, item_name=item.item_name,item_id=item.item_id)
+    except:
+        return render_template('extract.html',page='extract',error=True)
 
 
 if __name__ == '__main__':

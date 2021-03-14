@@ -25,7 +25,9 @@
             </div>
             <button type="submit" class="btn btn-secondary ml-4">Filtruj</button>
     </form>
+
     <div class="dropdown" style="text-align:right">
+        <a class="btn btn-info" href="{{ url_for('item_graphs',id=item_id)}}" role="button" >Zobacz wykresy</a>
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sort by
           </button>
