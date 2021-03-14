@@ -11,7 +11,7 @@ def plot_stars(stars):
     plt.xlabel("Ilość")
     plt.barh(*zip(*stars.items()),color=['#FC4444', '#FC8A44', '#FCEE44', '#ECFC44', '#CAFC44', '#A4FC44'])
     for index, value in enumerate(stars.values()):
-        plt.text(value+1 if value < 10 else value/2-1 , index, str(value),fontsize=8)
+        plt.text(value+0.5 if value < 5 else value/2-1 , index, str(value),fontsize=8)
 
     tmpfile = BytesIO()
     fig.savefig(tmpfile, format='png')

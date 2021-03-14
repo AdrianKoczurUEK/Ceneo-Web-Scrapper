@@ -36,7 +36,7 @@ def itemFilter():
     item_data = getJsonByItemId(item_id)
     filtered_data = filterBy(item_data, opFilter)
     return render_template('item.html', user_data=filtered_data['item_reviews'], item_img=filtered_data['item_img'],
-                           item_name=filtered_data['item_name'])
+                           item_name=filtered_data['item_name'],item_id=filtered_data['item_id'])
 
 
 @app.route('/item/sorted')
@@ -47,7 +47,7 @@ def itemSort():
     item_data = getJsonByItemId(item_id)
     sorted_data = sortBy(item_data, sort_by, sort_rev)
     return render_template('item.html', user_data=sorted_data['item_reviews'], item_img=sorted_data['item_img'],
-                           item_name=sorted_data['item_name'])
+                           item_name=sorted_data['item_name'],item_id=sorted_data['item_id'])
 
 
 @app.route('/extract')
