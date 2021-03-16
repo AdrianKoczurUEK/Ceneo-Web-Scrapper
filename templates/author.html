@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container" style="background-color:#e9ecef;height:400px;font-family: 'Montserrat', sans-serif;">
+    <div class="row">
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-8 pt-5">
+            <h4>Nazywam się Adrian Koczur</h4>
+        </div>
+    </div>
+    <div class="row pt-5">
+        <div class="col-lg-3">
+            <img src="{{url_for('static', filename='me.jpg')}}" width="200px" height="200px">
+        </div>
+        <div class="col-lg-8">
+            Jestem studentem pierwszego roku Uniwersytetu Ekonomicznego w Krakowie na kierunku Informatyka Stosowana.
+            Wybrałem ten kierunek, ponieważ uwielbiam uczyć się nowych rzeczy. Tworzenie czegoś i rozwijanie tego z dnia
+            na dzień sprawia mi niezwykłą przyjemność. Programowanie jest niesamowite, ponieważ ogranicza nas jedynie nasza wyobraźnia i cały czas
+            poznajemy nowe rozwiązania. Interesuje się również motoryzacją, dlatego w wolnym czasie od nauki, lubię sobie pogrzebać w samochodzie i ponaprawiać
+            kilka rzeczy, jeśli nie działają satysfakcjonująco :)
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

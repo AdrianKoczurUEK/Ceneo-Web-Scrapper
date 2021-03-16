@@ -6,11 +6,15 @@ from graph import generate_stars_plot,generate_recommend_plot
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8f42a73054b1749f8f58848be5e6502c'
 
+@app.route('/author')
+def author():
+    return render_template('author.html', page='author')
+
 @app.route('/graphs')
 def item_graphs():
     item_id = request.args.get('id', None)
     item_data = getJsonByItemId(item_id)
-    return render_template('graphs.html', plot_stars=generate_stars_plot(item_data),plot_recommend=generate_recommend_plot(item_data))
+    return render_template('graphs.html', plot_stars=generate_stars_plot(item_data),plot_recommend=generate_recommend_plot(item_data),item_id=item_id)
 
 @app.route('/list')
 def item_list():

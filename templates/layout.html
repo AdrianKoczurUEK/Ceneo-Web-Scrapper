@@ -11,13 +11,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
+    {% block style %}
 
+    {% endblock style %}
 </head>
 <body>
 
     <div class="jumbotron text-center">
-      <h1>Review Extractor</h1>
-      <p>Check opinions of your favourite item!</p>
+      <h1>Ekstraktor Opinii</h1>
+      <p>Zobacz opinie o swoim ulubionym przedmiocie!</p>
     </div>
 
     <nav class="navbar bg-light navbar-light justify-content-center">
@@ -32,7 +36,7 @@
           <a {%if page=='list'%} class="nav-link active"{% else %} class="nav-link" {%endif%} href="{{ url_for('item_list') }}">Lista Produktów</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  href="#menu2">O autorze</a>
+          <a {%if page=='author'%} class="nav-link active"{% else %} class="nav-link" {%endif%} href="{{ url_for('author') }}">O autorze</a>
         </li>
     </ul>
     </nav>

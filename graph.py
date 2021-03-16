@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-
 import base64
 from io import BytesIO
 
@@ -11,7 +10,7 @@ def plot_stars(stars):
     plt.xlabel("Ilość")
     plt.barh(*zip(*stars.items()),color=['#FC4444', '#FC8A44', '#FCEE44', '#ECFC44', '#CAFC44', '#A4FC44'])
     for index, value in enumerate(stars.values()):
-        plt.text(value+0.5 if value < 5 else value/2-1 , index, str(value),fontsize=8)
+        plt.text(value+0.5 if value < 2 else value/2-0.5 , index, str(value),fontsize=8)
 
     tmpfile = BytesIO()
     fig.savefig(tmpfile, format='png')
@@ -21,7 +20,7 @@ def plot_stars(stars):
 
 def plot_recommend(recommend):
     fig,ax  = plt.subplots(figsize=(5,5))
-    plt.title("Opinie")
+    plt.title("Polecenia")
     plt.pie(recommend.values(),colors=['#62C60D','#F14949'],explode=(0,0.15) if list(recommend.values())[1] >0 else (0,0),shadow=True,autopct='%1.1f%%',startangle=70)
     ax.legend(recommend.keys())
     ax.axis('equal')

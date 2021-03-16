@@ -1,7 +1,29 @@
 {% extends "layout.html" %}
+{% block style %}
+<style>
+
+.back {
+  -webkit-transition: all ease-in-out 300ms;
+  transition: all ease-in-out 300ms;
+}
+.back:hover {
+          letter-spacing:2px;
+}}
+
+</style>
+{% endblock style %}
 {% block content %}
+<div class="container">
 
-<img src="data:image/png;base64,{{plot_stars}}">
-<img src="data:image/png;base64,{{plot_recommend}}">
 
+    <div class="row justify-content-md-center" style="text-align:center">
+        <form action="{{ url_for('item') }}" method="post">
+                <div class="col-lg-12 "> <button type="submit" class="btn btn-info back" name="item_id" value="{{item_id}}"> <i class="fas fa-arrow-left"></i> &nbsp;Wróć</button></div>
+        </form>
+    </div>
+    <div class="row ">
+                <div class="col-lg-6 "><img src="data:image/png;base64,{{plot_stars}}"></div>
+                <div class="col-lg-6 "><img src="data:image/png;base64,{{plot_recommend}}"></div>
+    </div>
+</div>
 {% endblock content %}

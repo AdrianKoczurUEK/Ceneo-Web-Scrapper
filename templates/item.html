@@ -40,6 +40,8 @@
             <a class="dropdown-item" href="{{ url_for('itemSort', sort='pros_count', rev='False') }}">Liczba Zalet  (rosnąco)</a>
             <a class="dropdown-item" href="{{ url_for('itemSort', sort='cons_count', rev='True') }}">Liczba Wad  (malejąco)</a>
             <a class="dropdown-item" href="{{ url_for('itemSort', sort='cons_count', rev='False') }}">Liczba Wad  (rosnąco)</a>
+            <a class="dropdown-item" href="{{ url_for('itemSort', sort='rev_date', rev='False') }}">Data opinii (od najstarszych)</a>
+            <a class="dropdown-item" href="{{ url_for('itemSort', sort='rev_date', rev='True') }}">Data opinii (od najnowszych)</a>
           </div>
     </div>
 </div>
@@ -56,7 +58,7 @@
                         <div class="col-lg-2 pt-3 " style="background-color:#d8cfd8;"><i class="fas fa-user fa-7x" style="color:#949494"></i></div>
                         <div class="col-lg-3 pt-3 " style="background-color:#d8cfd8;"><h4 class="font-weight-normal">{{data.author}}</h4></div>
                         <div {%if data.recommended=='Polecam' %} class="col-lg-1 pt-3 font-weight-bolder text-success" {% else %} class="col-lg-1 pt-3 font-weight-bolder text-danger"{% endif%} style="background-color:#d8cfd8;">{{data.recommended}}</div>
-                        <div class="col-lg-4 pt-3" style="background-color:#d8cfd8;">
+                        <div class="col-lg-2 pt-3" style="background-color:#d8cfd8;">
                                 {{data.stars}}
                                 {% set starss = data.stars.split('/') %}
                                 {% set stars = starss[0].split(',') %}
@@ -65,6 +67,7 @@
                                 <i class="fas fa-star" style="color:#ffff66"></i>
                                 {%endfor%}
                         </div>
+                        <div class="col-lg-2 pt-3" style="background-color:#d8cfd8;">{{data.rev_date}}</div>
                         <div class="col-lg-1 pt-3" style="background-color:#d8cfd8;">{{data.rev_positive_votes}}<i class="fas fa-arrow-up pl-2" style="color:green"></i></div>
                         <div class="col-lg-1 pt-3" style="background-color:#d8cfd8;">{{data.rev_negative_votes}}<i class="fas fa-arrow-down pl-2" style="color:red"></i></div>
 

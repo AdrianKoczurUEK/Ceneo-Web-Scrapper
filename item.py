@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup as BS
 from review import Review
-from urllib.request import urlopen
 import requests
 
 
@@ -12,36 +11,36 @@ class Item:
         self.item_id = item_id
         self.item_name = self.getItemName()
         self.img = self.getImg()
-        self.rev_num=self.getRevNum()
-        self.item_avg_score=self.getItemAvgScore()
-        self.reviews=[]
+        self.rev_num = self.getRevNum()
+        self.item_avg_score = self.getItemAvgScore()
+        self.reviews = []
         self.generateRevs(item_id)
-        self.pros_count=self.itemProsCount()
-        self.cons_count=self.itemConsCount()
+        self.pros_count = self.itemProsCount()
+        self.cons_count = self.itemConsCount()
 
     def itemProsCount(self):
-        pro_count=0
+        pro_count = 0
         for rev in self.reviews:
-            pro_count+=len(rev.pros)
+            pro_count += len(rev.pros)
         return pro_count
 
     def itemConsCount(self):
-        con_count=0
+        con_count = 0
         for rev in self.reviews:
-            con_count+=len(rev.cons)
+            con_count += len(rev.cons)
         return con_count
-
 
     def getItemAvgScore(self):
         return self.soup.find(class_='product-review__score')['content']
 
     def getRevNum(self):
-        return self.soup.find(class_="product-review__link link link--accent js_reviews-link js_clickHash js_seoUrl").find("span").text
+        return self.soup.find(
+            class_="product-review__link link link--accent js_reviews-link js_clickHash js_seoUrl").find("span").text
 
     def getImg(self):
         try:
-            link=self.soup.find("a", attrs={"class":'js_gallery-anchor js_image-preview'})
-            lnk=link.find("img")["src"]
+            link = self.soup.find("a", attrs={"class": 'js_gallery-anchor js_image-preview'})
+            lnk = link.find("img")["src"]
             '''with open(f"images/{self.item_id}.jpg", "wb") as f:
                 f.write(urlopen(f'http://{lnk[2:]}').read())
             return f"images/{self.item_id}.jpg"'''
@@ -69,7 +68,7 @@ class Item:
             if pages_list.find(class_='pagination__item pagination__next'):
                 next_page = True
                 actual_page_num = 2
-                while next_page:
+                while next_page and actual_page_num<6:
                     npage_url = f'https://www.ceneo.pl/{item_id}/opinie-{actual_page_num}'
                     actual_page_num += 1
                     npage = requests.get(npage_url)
